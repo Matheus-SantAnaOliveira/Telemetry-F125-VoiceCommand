@@ -1,8 +1,9 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.CarStatus;
 using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.CarStatus
+namespace Api_Telemetry_F1.Services.CarStatus
 {
     public class CarStatusParser
     {
@@ -62,7 +63,7 @@ namespace Api_Telemetry_F1.Models.CarStatus
             {
                 var cs = ParseSingleCarStatusData(data, i, driversInfos, ref index);
 
-                var indexResponseButtons = elkClient.Client.Index<CarStatusData>(cs, idx => idx
+                var indexResponseButtons = elkClient.Client.Index(cs, idx => idx
                     .Index("telemetryf1-data-carstatus-individual"));
 
                 packet.CarStatusList.Add(cs);

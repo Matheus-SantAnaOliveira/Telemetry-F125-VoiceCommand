@@ -1,9 +1,10 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.LobbyInfo;
 using Api_Telemetry_F1.TelemetryUtils;
 using System.Text;
 
-namespace Api_Telemetry_F1.Models.LobbyInfo
+namespace Api_Telemetry_F1.Services.LobbyInfo
 {
     public class LobbyInfoParser
     {
@@ -47,7 +48,7 @@ namespace Api_Telemetry_F1.Models.LobbyInfo
 
             for (int i = 0; i < 22; i++)
             {
-                var lobbyPlayer = LobbyInfoParser.LobbyInfoIndidualParse(data,ref index);
+                var lobbyPlayer = LobbyInfoIndidualParse(data,ref index);
                 elkClient.Client.Index(lobbyPlayer, req => req.Index("telemetryf1-data-lobby-info-individual"));
                 packet.LobbyPlayers.Add(lobbyPlayer);
             }

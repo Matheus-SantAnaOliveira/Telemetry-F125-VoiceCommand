@@ -1,6 +1,7 @@
-﻿using Api_Telemetry_F1.TelemetryUtils;
+﻿using Api_Telemetry_F1.Models.Header;
+using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.Header
+namespace Api_Telemetry_F1.Services.Header
 {
     public class PacketHeaderParser
     {

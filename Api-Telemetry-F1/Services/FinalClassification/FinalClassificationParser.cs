@@ -1,8 +1,9 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.FinalClassification;
 using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.FinalClassification
+namespace Api_Telemetry_F1.Services.FinalClassification
 {
     public class FinalClassificationParser
     {

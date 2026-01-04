@@ -1,7 +1,8 @@
 ﻿using Api_Telemetry_F1.Common;
+using Api_Telemetry_F1.Models.TyreSet;
 using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.TyreSet
+namespace Api_Telemetry_F1.Services.TyreSet
 {
     public class TyreSetParser
     {

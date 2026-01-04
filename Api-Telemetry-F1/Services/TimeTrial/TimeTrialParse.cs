@@ -1,8 +1,9 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.TimeTrial;
 using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.TimeTrial
+namespace Api_Telemetry_F1.Services.TimeTrial
 {
     public class TimeTrialParse
     {

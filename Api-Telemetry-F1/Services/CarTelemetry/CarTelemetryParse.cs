@@ -1,10 +1,11 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.CarTelemetry;
 using Api_Telemetry_F1.Models.Header;
 using Api_Telemetry_F1.TelemetryUtils;
 using Nest;
 
-namespace Api_Telemetry_F1.Models.CarTelemetry
+namespace Api_Telemetry_F1.Services.CarTelemetry
 {
     public class CarTelemetryParse
     {

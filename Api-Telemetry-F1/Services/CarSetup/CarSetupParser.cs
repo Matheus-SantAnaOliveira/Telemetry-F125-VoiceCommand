@@ -1,7 +1,8 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.CarSetup;
 
-namespace Api_Telemetry_F1.Models.CarSetup
+namespace Api_Telemetry_F1.Services.CarSetup
 {
     public class CarSetupParser
     {

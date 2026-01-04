@@ -1,7 +1,8 @@
 ﻿using Api_Telemetry_F1.Common;
+using Api_Telemetry_F1.Models.SessionHistory;
 using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.SessionHistory
+namespace Api_Telemetry_F1.Services.SessionHistory
 {
     public class SessionHistoryParser
     {

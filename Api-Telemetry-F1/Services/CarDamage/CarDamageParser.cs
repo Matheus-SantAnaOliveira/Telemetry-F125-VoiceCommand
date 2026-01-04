@@ -1,8 +1,9 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Elastic;
+using Api_Telemetry_F1.Models.CarDamage;
 using Api_Telemetry_F1.TelemetryUtils;
 
-namespace Api_Telemetry_F1.Models.CarDamage
+namespace Api_Telemetry_F1.Services.CarDamage
 {
     public class CarDamageParser
     {
@@ -18,7 +19,7 @@ namespace Api_Telemetry_F1.Models.CarDamage
             }
             cd.ReceivedAt = DateTime.UtcNow;
             for (int i = 0; i < 4; i++) 
-                cd.TyresWear[i] = BitConverter.ToSingle(data, index + (i * 4));
+                cd.TyresWear[i] = BitConverter.ToSingle(data, index + i * 4);
             index += 16;
             for (int i = 0; i < 4; i++) 
                 cd.TyresDamage[i] = data[index++];

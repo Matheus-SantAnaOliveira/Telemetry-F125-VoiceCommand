@@ -1,8 +1,8 @@
-﻿using Api_Telemetry_F1.Models.Header;
+﻿using Api_Telemetry_F1.Models.SessionData;
 using Api_Telemetry_F1.TelemetryUtils;
 using System.Runtime.CompilerServices;
 
-namespace Api_Telemetry_F1.Models.SessionData
+namespace Api_Telemetry_F1.Services.SessionData
 {
     public class SessionParser
     {

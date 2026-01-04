@@ -1,11 +1,12 @@
 ﻿using Api_Telemetry_F1.Common;
 using Api_Telemetry_F1.Models.Header;
+using Api_Telemetry_F1.Models.ParticipantsPackage;
 using Api_Telemetry_F1.TelemetryUtils;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Api_Telemetry_F1.Models.ParticipantsPackage
+namespace Api_Telemetry_F1.Services.ParticipantsPackage
 {
     public class ParticipantParser
     {
@@ -16,7 +17,7 @@ namespace Api_Telemetry_F1.Models.ParticipantsPackage
 
         private static bool HasRemaining(byte[] data, int index, int needed)
         {
-            return (data != null) && (index + needed <= data.Length);
+            return data != null && index + needed <= data.Length;
         }
         public static PacketParticipantsInfo ParseParticipants(byte[] data)
         {

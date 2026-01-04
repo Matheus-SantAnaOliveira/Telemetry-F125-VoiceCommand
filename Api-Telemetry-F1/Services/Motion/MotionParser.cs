@@ -2,8 +2,9 @@
 using Api_Telemetry_F1.Elastic;
 using Api_Telemetry_F1.Models.FinalClassification;
 using Api_Telemetry_F1.Models.Header;
+using Api_Telemetry_F1.Models.Motion;
 
-namespace Api_Telemetry_F1.Models.Motion
+namespace Api_Telemetry_F1.Services.Motion
 {
     public class MotionParser
     {
