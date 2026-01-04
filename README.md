@@ -1,6 +1,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/)
-[![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.x-green.svg)](https://www.elastic.co/elasticsearch/)~
+[![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.x-green.svg)](https://www.elastic.co/elasticsearch/)
+
+# 🇺🇸 English Version
 
 # Telemetry-F125-VoiceCommand
 
@@ -221,5 +223,232 @@ This project is licensed under the MIT License.
 The MIT License allows free use, modification, and distribution of this software, provided that the original copyright notice and license text are included.
 
 You are free to use this project for personal, educational, or commercial purposes.
+
+---
+
+# 🇧🇷 Versão em Português (PT-BR)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/)
+[![Elasticsearch](https://img.shields.io/badge/Elasticsearch-8.x-green.svg)](https://www.elastic.co/elasticsearch/)
+
+# Telemetry-F125-VoiceCommand
+
+## Visão Geral
+
+Telemetry-F125-VoiceCommand é um sistema de telemetria em tempo real construído para **F1 25**, projetado para coletar, processar e visualizar dados de corrida ao vivo enquanto o jogo está sendo executado. O sistema usa **.NET**, **Elasticsearch** e **Kibana**, combinados com um **worker de comandos de voz local**, permitindo que o usuário controle os dashboards sem sair da corrida.
+
+O objetivo principal deste projeto é eliminar a necessidade de Alt+Tab durante o gameplay, possibilitando interação hands-free com os dashboards de telemetria em tempo real.
+
+---
+
+## Inspiração do Projeto e Fonte de Dados
+
+Este projeto é baseado inteiramente na **documentação oficial de telemetria lançada pela EA** para a série F1.
+
+📄 **Documentação Oficial de Telemetria:**
+(https://forums.ea.com/blog/f1-games-game-info-hub-en/ea-sports™-f1®25-udp-specification/12187347)
+
+Todas as estruturas de pacotes, formatos de dados e comportamento de telemetria seguem as especificações fornecidas nesta documentação.
+
+---
+
+## Arquitetura de Alto Nível
+
+O sistema é composto por três componentes principais:
+
+### 1. Telemetry Worker (.NET)
+
+* Escuta o **stream de telemetria UDP** do F1 25.
+* Analisa os pacotes de telemetria brutos de acordo com as especificações da EA.
+* Normaliza e processa os dados.
+* Indexa os dados de telemetria no **Elasticsearch** em tempo real.
+
+Este worker é responsável por toda a ingestão de dados do jogo e atua como a espinha dorsal do sistema.
+
+---
+
+### 2. Voice Command Worker (.NET + Vosk)
+
+* Usa **reconhecimento de fala local** (Vosk) para comandos de voz offline.
+* Escuta continuamente comandos predefinidos enquanto o jogo está rodando.
+* Dispara ações como abrir ou alternar **dashboards do Kibana**.
+
+Isso permite controle total do dashboard sem usar o teclado ou sair da janela do jogo.
+
+---
+
+### 3. Kibana Dashboards
+
+O Kibana serve como a camada de visualização para todos os dados de telemetria indexados no Elasticsearch. Os dashboards fornecem insights ricos e em tempo real sobre a corrida sem exigir qualquer interação com a janela do jogo.
+
+- Construídos diretamente sobre os índices do Elasticsearch para consulta e agregação rápidas.
+
+- Visualize dados chave de telemetria incluindo tempos de volta e deltas, status do carro (combustível, ERS, DRS), informações da sessão, desgaste e temperaturas dos pneus, temperaturas dos freios, danos do carro, previsões climáticas e muito mais.
+- Projetados especificamente para exibição em um segundo ou terceiro monitor, permitindo que você mantenha dados críticos à vista enquanto corre em modo tela cheia no seu monitor principal.
+- Totalmente customizáveis — você pode criar suas próprias visualizações e dashboards adaptados ao seu estilo de corrida (ex: gerenciamento de pneus estilo engenheiro, estratégia de combustível ou visão geral de danos).
+
+Comandos de voz do worker dedicado controlam dinamicamente qual dashboard é exibido ou oculto durante o gameplay. Isso permite alternância perfeita e hands-free entre visualizações (ex: verificar degradação de pneus no meio do stint ou puxar informações de danos após contato) sem nunca precisar dar Alt+Tab ou tocar no teclado/mouse.
+
+**Nota sobre Implantação (Por Que Docker Não É Recomendado):**  
+
+Embora o Docker seja comumente usado para Elasticsearch e Kibana, este projeto recomenda fortemente executá-los nativamente no Windows (ou via binários diretos) em vez de dentro do Docker sob WSL. O sistema anti-cheat da EA (usado pelo F1 25) foi observado em conflito com certos comportamentos de rede e monitoramento de processos do WSL/Docker, o que pode resultar em detecções de falso-positivo e potencial não abertura do jogo (NO MEU Caso, usar o Elastic como serviços nativos do Windows resolveu os crashes). 
+---
+
+## Recursos Principais
+
+* Ingestão de telemetria em tempo real do F1 25
+* Processamento totalmente local (sem dependência de cloud)
+* Indexação do Elasticsearch otimizada para dados de séries temporais
+* Navegação de dashboard controlada por voz
+* Reconhecimento de fala offline
+* Configuração amigável para múltiplos monitores
+
+---
+
+## Primeiros Passos
+
+1. **Habilite a Telemetria UDP no F1 25**  
+   Vá em: Settings → Telemetry Settings → UDP Telemetry → On  
+   Defina o UDP Format como **2025** e Port como **20777** (padrão).
+
+2. **Inicie o Elasticsearch e Kibana**  
+   Recomendado: Use Elastic e Kibana como serviços nativos do Windows.
+   (Leia: Seção Nota sobre Implantação (Por Que Docker Não É Recomendado) para explicação.)
+
+3. **Baixe o Modelo Vosk em Português**  
+   Baixe o `vosk-model-small-pt-0.3` de:  
+   https://alphacephei.com/vosk/models/vosk-model-small-pt-0.3.zip  
+   Extraia-o e configure o caminho em `appsettings.json` (seção VoiceWorker).
+
+4. **Importe ou Crie Dashboards no Kibana**  
+   ```bash
+   dotnet build
+   dotnet run --project Api-Telemetry-F1
+   dotnet run --project F1VoiceDashboardWorker
+
+5. **Compile e Execute os Workers**  
+    Abra o Kibana em http://localhost:5601 e crie visualizações baseadas nos dados indexados.
+    (Pretendo deixar os dashboards estilo Jetsons já criados acessíveis no futuro, para que você possa simplesmente importá-los.)
+6. Comece a Correr e Use Comandos de Voz!
+
+## Comandos de Voz (Exemplos)
+
+| Comando (Português)           | Ação                                     |
+|-------------------------------|------------------------------------------|
+| "Abrir dashboard principal"   | Abre o dashboard de visão geral principal|
+| "Mostrar voltas"              | Alterna para o dashboard de tempos de volta|
+| "Mostrar pneus"               | Mostra o dashboard de desgaste de pneus  |
+| "Mostrar danos"               | Exibe o dashboard de danos do carro      |
+| "Mostrar status do carro"     | Abre o dashboard de status do carro      |
+| "Fechar dashboard"            | Fecha o dashboard atual                  |
+
+Você pode facilmente estender a lista de comandos no código do voice worker.
+
+---
+
+## Capturas de Tela
+
+![Positions](screenshots/positions.png)  
+*Dashboard de visão geral de posições no Kibana*
+
+![Wing Damage](screenshots/wingDamage.png)  
+*Dashboard de Danos nas Asas*
+
+![Tyre Use](screenshots/TyreUse.png)  
+*Dashboard de Uso de Pneus*
+
+![Voice Command in Action](screenshots/VoiceCommandExample.png)  
+*Exemplo de comando de voz durante uma corrida*
+
+![Buttons Used during a Race](screenshots/button.png)  
+*Dashboard de botões usados*
+
+Para mais exemplos, veja a pasta "screenshots".
+
+## Estrutura do Projeto
+
+```text
+Telemetry-F125-VoiceCommand
+│
+├── Api-Telemetry-F1/        Ingestão e processamento de telemetria principal
+│   ├── Controllers
+│   ├── Models
+│   ├── Services
+│   ├── TelemetryUtils
+│   └── Workers
+│
+├── F1VoiceDashboardWorker/  Worker de comandos de voz
+│   ├── Models
+│   ├── Services
+│   ├── Workers
+│   └── VoskModel (ignorado)
+│
+├── F1DashboardUI/           # UI opcional / lançador de dashboard
+│
+└── README.md
+```
+
+---
+
+## Modelo de Reconhecimento de Voz
+
+Este projeto usa **Vosk** para reconhecimento de fala.
+
+O modelo em português (`vosk-model-small-pt-0.3`) **não está incluído no repositório** e deve ser baixado separadamente.
+
+🔊 **Download do modelo:**
+(https://alphacephei.com/vosk/models)
+Após o download, coloque o modelo no diretório de modelos configurado conforme descrito na configuração do voice worker.
+
+---
+
+## Configuração
+
+* `appsettings.json` contém a configuração compartilhada.
+* Configurações locais ou específicas do ambiente devem ser colocadas em:
+
+  * `appsettings.Development.json`
+  * `appsettings.Local.json`
+
+Esses arquivos são intencionalmente ignorados pelo Git.
+
+---
+
+## Requisitos
+
+* Windows
+* .NET SDK
+* Elasticsearch
+* Kibana
+* Microfone (para comandos de voz)
+* F1 25
+
+---
+
+## Aviso Legal
+
+Este projeto **não é afiliado à EA ou Codemasters**.
+
+Os dados de telemetria do F1 25 são usados estritamente para fins educacionais, experimentais e pessoais, seguindo a documentação oficial fornecida pela EA.
+
+---
+
+## Melhorias Futuras
+
+* Gramática de comandos de voz mais avançada
+* Suporte a pacotes de telemetria adicionais
+* Layout automático de dashboard baseado no tipo de sessão
+* Otimizações de desempenho para sessões longas
+
+---
+
+## Licença
+
+Este projeto é licenciado sob a Licença MIT.
+
+A Licença MIT permite uso, modificação e distribuição gratuitos deste software, desde que o aviso de direitos autorais original e o texto da licença sejam incluídos.
+
+Você é livre para usar este projeto para fins pessoais, educacionais ou comerciais.
 
 
