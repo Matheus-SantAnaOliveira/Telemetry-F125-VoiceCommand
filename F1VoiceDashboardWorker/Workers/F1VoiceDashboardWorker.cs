@@ -13,11 +13,13 @@ namespace F1VoiceDashboardWorker.Workers
         private WaveInEvent? _waveIn;
         private VoskRecognizer? _recognizer;
         public readonly VoiceWorkerSettings VoiceWorkerSettings;
+        public APIConfig APIConfig;
         public static int _Monitor;
-        public VoiceWorker(IOptions<VoiceWorkerSettings> voiceSettingsConfig)
+        public VoiceWorker(IOptions<VoiceWorkerSettings> voiceSettingsConfig, IOptions<APIConfig> apiConfig)
         {
             VoiceWorkerSettings = voiceSettingsConfig.Value;
             _Monitor = VoiceWorkerSettings.MonitorNumber;
+            APIConfig = apiConfig.Value;
         }
         private static bool _aguardandoNumeroMonitor = false;
 
@@ -81,7 +83,7 @@ namespace F1VoiceDashboardWorker.Workers
                 if (!string.IsNullOrWhiteSpace(texto))
                 {
                     Console.WriteLine($"\n[FRASE COMPLETA] Você disse: '{texto}'");
-                    CommandExecuteHelper.ExecutarComando(texto, Commands.CommandsUrl, ref _Monitor, ref _aguardandoNumeroMonitor);
+                    CommandExecuteHelper.ExecutarComando(texto, Commands.CommandsUrl, APIConfig.BaseURL,ref _Monitor, ref _aguardandoNumeroMonitor);
                 }
             }
             else

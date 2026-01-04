@@ -236,7 +236,6 @@ namespace Api_Telemetry_F1.Workers
             var indexResponse = ElasticClient.Client.Index<TotalTelemetryReceived>(totalTelemetryReceived, i => i
                                 .Index("telemetryf1-data"));
         }
-        
 
         public override void Dispose()
         {

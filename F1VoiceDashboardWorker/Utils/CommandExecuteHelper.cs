@@ -1,4 +1,5 @@
 ﻿using F1VoiceDashboardWorker.Services;
+using F1VoiceDashboardWorker.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace F1VoiceDashboardWorker.Utils
 {
     public static class CommandExecuteHelper
     {
-        public static void ExecutarComando(string text, Dictionary<string, string> comands, ref int desiredMonitor, ref bool waitingMOnitor)
+        public static void ExecutarComando(string text, Dictionary<string, string> comands, string url, ref int desiredMonitor, ref bool waitingMOnitor)
         {
             text = text.Trim().ToLowerInvariant();
 
@@ -36,6 +37,18 @@ namespace F1VoiceDashboardWorker.Utils
                     else if (cmd.Value == "LIMPAR")
                     {
                         Console.Clear();
+                    }
+                    else if(cmd.Value == "INICIAR_TELEMETRIA")
+                    {
+                        TelemetryApiService telemetryApiService = new TelemetryApiService(url);
+                        Console.WriteLine("COMANDO - Iniciando telemetria!");
+                        telemetryApiService.StartTelemetry();
+                    }
+                    else if (cmd.Value == "PARAR_TELEMETRIA")
+                    {
+                        TelemetryApiService telemetryApiService = new TelemetryApiService(url);
+                        Console.WriteLine("COMANDO - Parando telemetria!");
+                        telemetryApiService.StopTelemetry();
                     }
                     else
                     {

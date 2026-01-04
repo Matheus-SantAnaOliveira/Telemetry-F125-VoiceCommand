@@ -20,6 +20,9 @@ namespace F1VoiceDashboardWorker.Models
         static readonly string closeBrowser = "FECHAR_NAVEGADOR";
         static readonly string cleanCommand = "LIMPAR";
         static readonly string switchMonitor = "ALTERAR_MONITOR";
+        static readonly string startTelemetry = "INICIAR_TELEMETRIA";
+
+        static readonly string stopTelemetry = "PARAR_TELEMETRIA";
         public static readonly Dictionary<string, string> CommandsUrl = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             ["posição"] = positionsDashbord,
@@ -74,7 +77,14 @@ namespace F1VoiceDashboardWorker.Models
             ["limpar"] = cleanCommand,
             ["clear"] = cleanCommand,
             ["limpa"] = cleanCommand,
-            ["limpa cmd"] = cleanCommand
+            ["limpa cmd"] = cleanCommand,
+
+            ["iniciar coleta"] = startTelemetry,
+            ["iniciar telemetria"] = startTelemetry,
+            ["iniciar"] = startTelemetry,
+
+            ["parar coleta"] = stopTelemetry,
+            ["parar telemetria"] = stopTelemetry,
         };
 
     }
