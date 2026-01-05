@@ -11,7 +11,7 @@ namespace F1VoiceDashboardWorker.Utils
 {
     public static class CommandExecuteHelper
     {
-        public static void ExecutarComando(string text, Dictionary<string, string> comands, string url, ref int desiredMonitor, ref bool waitingMOnitor)
+        public static void ExecuteCommand(string text, Dictionary<string, string> comands, string url, ref int desiredMonitor, ref bool waitingMOnitor)
         {
             text = text.Trim().ToLowerInvariant();
 

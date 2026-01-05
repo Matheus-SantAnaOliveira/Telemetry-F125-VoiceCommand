@@ -11,6 +11,10 @@ builder.Services.Configure<APIConfig>(
     builder.Configuration.GetSection("APIConfig")
 );
 
+builder.Services.Configure<DashboardsF1>(
+    builder.Configuration.GetSection("DashboardsF1")
+);
+
 builder.Services.AddHostedService<VoiceWorker>();
 
 var host = builder.Build();

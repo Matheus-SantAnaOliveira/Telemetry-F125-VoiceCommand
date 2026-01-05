@@ -15,11 +15,15 @@ namespace F1VoiceDashboardWorker.Workers
         public readonly VoiceWorkerSettings VoiceWorkerSettings;
         public APIConfig APIConfig;
         public static int _Monitor;
-        public VoiceWorker(IOptions<VoiceWorkerSettings> voiceSettingsConfig, IOptions<APIConfig> apiConfig)
+        public Commands CommandsDict;
+        public DashboardsF1 DashboardF1Data;
+        public VoiceWorker(IOptions<VoiceWorkerSettings> voiceSettingsConfig, IOptions<APIConfig> apiConfig, IOptions<DashboardsF1> DashF1Config)
         {
             VoiceWorkerSettings = voiceSettingsConfig.Value;
             _Monitor = VoiceWorkerSettings.MonitorNumber;
             APIConfig = apiConfig.Value;
+            DashboardF1Data = DashF1Config.Value;
+            CommandsDict = new Commands(DashboardF1Data);
         }
         private static bool _aguardandoNumeroMonitor = false;
 
@@ -83,7 +87,7 @@ namespace F1VoiceDashboardWorker.Workers
                 if (!string.IsNullOrWhiteSpace(texto))
                 {
                     Console.WriteLine($"\n[FRASE COMPLETA] Você disse: '{texto}'");
-                    CommandExecuteHelper.ExecutarComando(texto, Commands.CommandsUrl, APIConfig.BaseURL,ref _Monitor, ref _aguardandoNumeroMonitor);
+                    CommandExecuteHelper.ExecuteCommand(texto, CommandsDict.CommandsUrl, APIConfig.BaseURL,ref _Monitor, ref _aguardandoNumeroMonitor);
                 }
             }
             else

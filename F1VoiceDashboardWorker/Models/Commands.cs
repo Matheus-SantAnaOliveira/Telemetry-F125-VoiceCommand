@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using F1VoiceDashboardWorker.Settings;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,83 +10,186 @@ namespace F1VoiceDashboardWorker.Models
 {
     public class Commands
     {
-        static readonly string positionsDashbord = "http://localhost:5601/app/dashboards#/view/f6f18056-96f1-42ab-8cdc-a80e62b3f807?_g=(filters:!(),refreshInterval:(pause:!f,value:2000),time:(from:now-15m,to:now))";
-        static readonly string raceData = "http://localhost:5601/app/dashboards#/view/a4bf5f3f-e3b7-42f3-b897-4334572b4ebc?_g=(filters:!(),refreshInterval:(pause:!f,value:2000),time:(from:now-15m,to:now))";
-        static readonly string lapTime = "http://localhost:5601/app/dashboards#/view/fa2915b0-d5f2-4a05-a05d-42d707d3d7a1?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))";
-        static readonly string controlData = "http://localhost:5601/app/dashboards#/view/cfc3e072-38fb-4840-a79d-db16f59f2f66?_g=(filters:!(),refreshInterval:(pause:!f,value:2000),time:(from:now-15m,to:now))";
-        static readonly string wingDamage = "http://localhost:5601/app/dashboards#/view/6fbc80fb-225e-43a6-93be-0a6b9c744e6f?_g=(filters:!(),refreshInterval:(pause:!f,value:2000),time:(from:now-15m,to:now))";
-        static readonly string tireData = "http://localhost:5601/app/dashboards#/view/db8ae0ee-19d5-4ac2-a1d0-aef027479d27?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-15m,to:now))";
-        static readonly string fuelData = "http://localhost:5601/app/dashboards#/create?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-24h%2Fh,to:now))";
-
+        public readonly DashboardsF1 DashboardsF1Data;
+        public Dictionary<string, string> CommandsUrl;
         static readonly string closeBrowser = "FECHAR_NAVEGADOR";
         static readonly string cleanCommand = "LIMPAR";
         static readonly string switchMonitor = "ALTERAR_MONITOR";
         static readonly string startTelemetry = "INICIAR_TELEMETRIA";
-
         static readonly string stopTelemetry = "PARAR_TELEMETRIA";
-        public static readonly Dictionary<string, string> CommandsUrl = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        public Commands(DashboardsF1 dashboardData)
         {
-            ["posição"] = positionsDashbord,
-            ["posições"] = positionsDashbord,
-            ["grid"] = positionsDashbord,
-            ["posição na volta"] = positionsDashbord,
-            ["posição lap"] = positionsDashbord,
-            ["mostra posição"] = positionsDashbord,
-            ["abre posição"] = positionsDashbord,
+            DashboardsF1Data = dashboardData;
 
-            ["dados de corrida"] = raceData,
-            ["ultrapassagens"] = raceData,
-            ["dados"] = raceData,
-            ["punições"] = raceData,
+            CommandsUrl = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                #region Portuguese Commands
+                ["posição"] = DashboardsF1Data.Positions,
+                ["posições"] = DashboardsF1Data.Positions,
+                ["grid"] = DashboardsF1Data.Positions,
+                ["posição na volta"] = DashboardsF1Data.Positions,
+                ["posição lap"] = DashboardsF1Data.Positions,
+                ["mostra posição"] = DashboardsF1Data.Positions,
+                ["abre posição"] = DashboardsF1Data.Positions,
 
-            ["tempo de volta"] = lapTime,
-            ["setor um"] = lapTime,
-            ["setor dois"] = lapTime,
-            ["setor tres"] = lapTime,
-            ["tempo"] = lapTime,
+                ["dados de corrida"] = DashboardsF1Data.RaceData,
+                ["ultrapassagens"] = DashboardsF1Data.RaceData,
+                ["dados"] = DashboardsF1Data.RaceData,
+                ["punições"] = DashboardsF1Data.RaceData,
 
-            ["botões"] = controlData,
-            ["controle"] = controlData,
-            ["dados do controle"] = controlData,
+                ["tempo de volta"] = DashboardsF1Data.LapTime,
+                ["setor um"] = DashboardsF1Data.LapTime,
+                ["setor dois"] = DashboardsF1Data.LapTime,
+                ["setor tres"] = DashboardsF1Data.LapTime,
+                ["tempo"] = DashboardsF1Data.LapTime,
 
-            ["danos na asa"] = wingDamage,
-            ["asa frontal"] = wingDamage,
-            ["asa traseira"] = wingDamage,
-            ["asa esquerda"] = wingDamage,
-            ["asa direita"] = wingDamage,
+                ["botões"] = DashboardsF1Data.ControlData,
+                ["controle"] = DashboardsF1Data.ControlData,
+                ["dados do controle"] = DashboardsF1Data.ControlData,
 
-            ["pneu"] = tireData,
-            ["dados pneu"] = tireData,
+                ["danos na asa"] = DashboardsF1Data.WingDamage,
+                ["asa frontal"] = DashboardsF1Data.WingDamage,
+                ["asa traseira"] = DashboardsF1Data.WingDamage,
+                ["asa esquerda"] = DashboardsF1Data.WingDamage,
+                ["asa direita"] = DashboardsF1Data.WingDamage,
 
-            ["combustivel"] = tireData,
-            ["gasolina"] = tireData,
-            ["combustivel restante"] = tireData,
+                ["pneu"] = DashboardsF1Data.TireData,
+                ["dados pneu"] = DashboardsF1Data.TireData,
 
-            ["fechar"] = closeBrowser,
-            ["fecha"] = closeBrowser,
-            ["fechar chrome"] = closeBrowser,
-            ["fecha tudo"] = closeBrowser,
-            ["limpar telas"] = closeBrowser,
-            ["fechar dashboards"] = closeBrowser,
-            ["sair"] = closeBrowser,
+                ["combustivel"] = DashboardsF1Data.FuelData,
+                ["gasolina"] = DashboardsF1Data.FuelData,
+                ["combustivel restante"] = DashboardsF1Data.FuelData,
+                ["combustível"] = DashboardsF1Data.FuelData,
+                ["combustível restante"] = DashboardsF1Data.FuelData,
 
-            ["alterar monitor"] = switchMonitor,
-            ["mudar monitor"] = switchMonitor,
-            ["trocar monitor"] = switchMonitor,
-            ["monitor"] = switchMonitor,
+                ["carro setup"] = DashboardsF1Data.CarSetup,
+                ["dados carro"] = DashboardsF1Data.CarSetup,
+                ["configuração carro"] = DashboardsF1Data.CarSetup,
+                ["configuração"] = DashboardsF1Data.CarSetup,
+                ["ajustes do carro"] = DashboardsF1Data.CarSetup,
 
-            ["limpar"] = cleanCommand,
-            ["clear"] = cleanCommand,
-            ["limpa"] = cleanCommand,
-            ["limpa cmd"] = cleanCommand,
+                ["bateria"] = DashboardsF1Data.Battery,
+                ["ers"] = DashboardsF1Data.Battery,
+                ["uso de bateria"] = DashboardsF1Data.Battery,
+                ["média de uso de bateria"] = DashboardsF1Data.Battery,
 
-            ["iniciar coleta"] = startTelemetry,
-            ["iniciar telemetria"] = startTelemetry,
-            ["iniciar"] = startTelemetry,
+                ["modo de ultrapassagem"] = DashboardsF1Data.DRS,
+                ["ativar drs"] = DashboardsF1Data.DRS,
+                ["ativar drs"] = DashboardsF1Data.DRS,
+                ["abrir asa"] = DashboardsF1Data.DRS,
 
-            ["parar coleta"] = stopTelemetry,
-            ["parar telemetria"] = stopTelemetry,
-        };
+                ["Tempo de parada"] = DashboardsF1Data.PitStopTime,
+                ["Pit Stop"] = DashboardsF1Data.PitStopTime,
+                ["Tempo nos boxes"] = DashboardsF1Data.PitStopTime,
 
+                ["fechar"] = closeBrowser,
+                ["fecha"] = closeBrowser,
+                ["fechar chrome"] = closeBrowser,
+                ["fecha tudo"] = closeBrowser,
+                ["limpar telas"] = closeBrowser,
+                ["fechar dashboards"] = closeBrowser,
+                ["sair"] = closeBrowser,
+
+                ["alterar monitor"] = switchMonitor,
+                ["mudar monitor"] = switchMonitor,
+                ["trocar monitor"] = switchMonitor,
+                ["monitor"] = switchMonitor,
+
+                ["limpar"] = cleanCommand,
+                ["clear"] = cleanCommand,
+                ["limpa"] = cleanCommand,
+                ["limpa cmd"] = cleanCommand,
+
+                ["iniciar coleta"] = startTelemetry,
+                ["iniciar telemetria"] = startTelemetry,
+                ["iniciar"] = startTelemetry,
+
+                ["parar coleta"] = stopTelemetry,
+                ["parar telemetria"] = stopTelemetry,
+                #endregion
+                #region English Commands
+                ["position"] = DashboardsF1Data.Positions,
+                ["positions"] = DashboardsF1Data.Positions,
+                ["standings"] = DashboardsF1Data.Positions,
+                ["grid position"] = DashboardsF1Data.Positions,
+                ["show position"] = DashboardsF1Data.Positions,
+                ["open position"] = DashboardsF1Data.Positions,
+
+                ["race data"] = DashboardsF1Data.RaceData,
+                ["overtakes"] = DashboardsF1Data.RaceData,
+                ["overtaking"] = DashboardsF1Data.RaceData,
+                ["penalties"] = DashboardsF1Data.RaceData,
+                ["punishments"] = DashboardsF1Data.RaceData,
+
+                ["lap time"] = DashboardsF1Data.LapTime,
+                ["sector one"] = DashboardsF1Data.LapTime,
+                ["sector two"] = DashboardsF1Data.LapTime,
+                ["sector three"] = DashboardsF1Data.LapTime,
+                ["sector 1"] = DashboardsF1Data.LapTime,
+                ["sector 2"] = DashboardsF1Data.LapTime,
+                ["sector 3"] = DashboardsF1Data.LapTime,
+                ["time"] = DashboardsF1Data.LapTime,
+
+                ["buttons"] = DashboardsF1Data.ControlData,
+                ["control"] = DashboardsF1Data.ControlData,
+                ["control data"] = DashboardsF1Data.ControlData,
+
+                ["wing damage"] = DashboardsF1Data.WingDamage,
+                ["front wing"] = DashboardsF1Data.WingDamage,
+                ["rear wing"] = DashboardsF1Data.WingDamage,
+                ["left wing"] = DashboardsF1Data.WingDamage,
+                ["right wing"] = DashboardsF1Data.WingDamage,
+
+                ["tire"] = DashboardsF1Data.TireData,
+                ["tyre"] = DashboardsF1Data.TireData,          
+                ["tire data"] = DashboardsF1Data.TireData,
+                ["tyre data"] = DashboardsF1Data.TireData,
+
+                ["fuel"] = DashboardsF1Data.FuelData,
+                ["remaining fuel"] = DashboardsF1Data.FuelData,
+                ["fuel remaining"] = DashboardsF1Data.FuelData,
+
+                ["car setup"] = DashboardsF1Data.CarSetup,
+                ["car settings"] = DashboardsF1Data.CarSetup,
+                ["setup"] = DashboardsF1Data.CarSetup,
+                ["car configuration"] = DashboardsF1Data.CarSetup,
+
+                ["battery"] = DashboardsF1Data.Battery,
+                ["ers status"] = DashboardsF1Data.Battery,
+                ["battery usage"] = DashboardsF1Data.Battery,
+                ["average battery usage"] = DashboardsF1Data.Battery,
+
+                ["drs"] = DashboardsF1Data.DRS,
+                ["open drs"] = DashboardsF1Data.DRS,
+                ["activate drs"] = DashboardsF1Data.DRS,
+                ["overtake mode"] = DashboardsF1Data.DRS,
+
+                ["pit stop time"] = DashboardsF1Data.PitStopTime,
+                ["pit time"] = DashboardsF1Data.PitStopTime,
+                ["box time"] = DashboardsF1Data.PitStopTime,
+
+                ["close"] = closeBrowser,
+                ["exit"] = closeBrowser,
+                ["quit"] = closeBrowser,
+                ["close browser"] = closeBrowser,
+                ["close all"] = closeBrowser,
+                ["close dashboards"] = closeBrowser,
+
+                ["switch monitor"] = switchMonitor,
+                ["change monitor"] = switchMonitor,
+
+                ["clean"] = cleanCommand,
+                ["clear screen"] = cleanCommand,
+
+                ["start telemetry"] = startTelemetry,
+                ["start collection"] = startTelemetry,
+                ["begin telemetry"] = startTelemetry,
+
+                ["stop telemetry"] = stopTelemetry,
+                ["stop collection"] = stopTelemetry,
+                ["end telemetry"] = stopTelemetry,
+                #endregion
+            };
+        }
     }
 }
