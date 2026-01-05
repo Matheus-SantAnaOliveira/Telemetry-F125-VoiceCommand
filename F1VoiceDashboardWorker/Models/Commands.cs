@@ -83,7 +83,9 @@ namespace F1VoiceDashboardWorker.Models
                 ["Tempo nos boxes"] = DashboardsF1Data.PitStopTime,
 
                 ["dano no carro"] = DashboardsF1Data.CarDamage,
+                ["danos no carro"] = DashboardsF1Data.CarDamage,
                 ["dano carro"] = DashboardsF1Data.CarDamage,
+                ["dano sofrido"] = DashboardsF1Data.CarDamage,
                 ["dano no sidepod"] = DashboardsF1Data.CarDamage,
                 ["sidepod"] = DashboardsF1Data.CarDamage,
                 ["dano na caixa de cambio"] = DashboardsF1Data.CarDamage,
