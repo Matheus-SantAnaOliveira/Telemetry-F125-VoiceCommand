@@ -16,7 +16,7 @@ namespace F1VoiceDashboardWorker.Services
             for (int i = 0; i < displays.Count; i++)
             {
                 var d = displays[i];
-                Console.WriteLine($"  Monitor {i + 1}: {d.DeviceName} - {d.CurrentSetting.Resolution.Width}x{d.CurrentSetting.Resolution.Height}");
+                Console.WriteLine($"Monitor {i + 1}: {d.DeviceName} - {d.CurrentSetting.Resolution.Width}x{d.CurrentSetting.Resolution.Height}");
             }
             Console.WriteLine("\nDiga o número do monitor desejado (ex: 'dois' ou '2'):");
             waitingMonitor = true;
@@ -37,26 +37,46 @@ namespace F1VoiceDashboardWorker.Services
                 switch (input.ToLower())
                 {
                     case "um":
+                    case "one":
+                    case "first":
                     case "1":
+                    case "1st":
                         monitorNumber = 1;
                         break;
+
                     case "dois":
+                    case "two":
+                    case "second":
                     case "2":
+                    case "2nd":
                         monitorNumber = 2;
                         break;
+
                     case "tres":
                     case "três":
+                    case "three":
+                    case "third":
                     case "3":
+                    case "3rd":
                         monitorNumber = 3;
                         break;
+
                     case "quatro":
+                    case "four":
+                    case "fourth":
                     case "4":
+                    case "4th":
                         monitorNumber = 4;
                         break;
+
                     case "cinco":
+                    case "five":
+                    case "fifth":
                     case "5":
+                    case "5th":
                         monitorNumber = 5;
                         break;
+
                     default:
                         monitorNumber = -1;
                         break;
