@@ -82,6 +82,14 @@ namespace F1VoiceDashboardWorker.Models
                 ["Pit Stop"] = DashboardsF1Data.PitStopTime,
                 ["Tempo nos boxes"] = DashboardsF1Data.PitStopTime,
 
+                ["dano no carro"] = DashboardsF1Data.CarDamage,
+                ["dano carro"] = DashboardsF1Data.CarDamage,
+                ["dano no sidepod"] = DashboardsF1Data.CarDamage,
+                ["sidepod"] = DashboardsF1Data.CarDamage,
+                ["dano na caixa de cambio"] = DashboardsF1Data.CarDamage,
+                ["status dano no carro"] = DashboardsF1Data.CarDamage,
+                ["informações dano no carro"] = DashboardsF1Data.CarDamage,
+
                 ["fechar"] = closeBrowser,
                 ["fecha"] = closeBrowser,
                 ["fechar chrome"] = closeBrowser,
@@ -167,6 +175,13 @@ namespace F1VoiceDashboardWorker.Models
                 ["pit stop time"] = DashboardsF1Data.PitStopTime,
                 ["pit time"] = DashboardsF1Data.PitStopTime,
                 ["box time"] = DashboardsF1Data.PitStopTime,
+
+                ["car damage"] = DashboardsF1Data.CarDamage,
+                ["sidepod damage"] = DashboardsF1Data.CarDamage,
+                ["side pod"] = DashboardsF1Data.CarDamage,
+                ["engine damage"] = DashboardsF1Data.CarDamage,
+                ["gearbox damage"] = DashboardsF1Data.CarDamage,
+                ["gearbox"] = DashboardsF1Data.CarDamage,
 
                 ["close"] = closeBrowser,
                 ["exit"] = closeBrowser,

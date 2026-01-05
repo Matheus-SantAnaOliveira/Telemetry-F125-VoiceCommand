@@ -125,7 +125,9 @@ namespace Api_Telemetry_F1.Workers
                     }
 
                     totalTelemetryReceived.ParticipantsInfoPacket = ParticipantParser.ParseParticipants(telemetryInfos);
-                    if(totalTelemetryReceived != null && totalTelemetryReceived.ParticipantsInfoPacket.Participants.Count > 0)
+                    if(totalTelemetryReceived != null && 
+                        totalTelemetryReceived.ParticipantsInfoPacket.Participants.Count > 0 
+                        && totalTelemetryReceived.ParticipantsInfoPacket.Participants.Count >= _CacheParticipants.Count)
                         _CacheParticipants = CachedDriversInfoExtensions.ToCachedDriversInfo(totalTelemetryReceived.ParticipantsInfoPacket);
 
                     var indexResponseButtons = ElasticClient.Client.Index<PacketParticipantsInfo>(totalTelemetryReceived.ParticipantsInfoPacket, i => i

@@ -135,6 +135,10 @@ You can easily extend the command list in the voice worker code.
 ![Buttons Used during a Race](screenshots/button.png)  
 *button used Dashboard*
 
+![General Car damage](screenshots/generalCarDamage.png)  
+*damage sustained by the car during the race*
+*Floor, gearbox, sidepods, DRS and battery problems, engine damage.*
+
 For more Examples, view the folder "screenshots".
 
 ## Project Structure
@@ -349,20 +353,24 @@ Você pode facilmente estender a lista de comandos no código do voice worker.
 
 ## Capturas de Tela
 
-![Positions](screenshots/positions.png)  
+![Posições](screenshots/positions.png)  
 *Dashboard de visão geral de posições no Kibana*
 
-![Wing Damage](screenshots/wingDamage.png)  
+![Danos na asa](screenshots/wingDamage.png)  
 *Dashboard de Danos nas Asas*
 
-![Tyre Use](screenshots/TyreUse.png)  
+![uso de Pneus](screenshots/TyreUse.png)  
 *Dashboard de Uso de Pneus*
 
-![Voice Command in Action](screenshots/VoiceCommandExample.png)  
+![Comando de voz em ação](screenshots/VoiceCommandExample.png)  
 *Exemplo de comando de voz durante uma corrida*
 
-![Buttons Used during a Race](screenshots/button.png)  
+![Botões usados durante a corrida](screenshots/button.png)  
 *Dashboard de botões usados*
+
+![Dano Geral no carro](screenshots/generalCarDamage.png)  
+*dano geral no carro durante a corrida*
+*Assoalho, Caixa de cambio, Sidepods, Problemas no drs, na bateria e danos no motor.*
 
 Para mais exemplos, veja a pasta "screenshots".
 
