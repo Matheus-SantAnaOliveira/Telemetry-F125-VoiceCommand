@@ -10,7 +10,7 @@ namespace Api_Telemetry_F1.Services.SessionData
         {
             int index = 0;
             PacketSession packet = new PacketSession();
-
+            packet.EventDate = DateTime.Now;
             packet.Weather = data[index++];
             packet.WeatherDescription = TranslateByteType.WeatherType(packet.Weather);
             packet.TrackTemperature = (sbyte)data[index++];

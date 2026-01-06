@@ -41,6 +41,7 @@ namespace F1VoiceDashboardWorker.Models
                 ["setor um"] = DashboardsF1Data.LapTime,
                 ["setor dois"] = DashboardsF1Data.LapTime,
                 ["setor tres"] = DashboardsF1Data.LapTime,
+                ["setor três"] = DashboardsF1Data.LapTime,
                 ["tempo"] = DashboardsF1Data.LapTime,
 
                 ["botões"] = DashboardsF1Data.ControlData,
@@ -49,6 +50,7 @@ namespace F1VoiceDashboardWorker.Models
 
                 ["danos na asa"] = DashboardsF1Data.WingDamage,
                 ["asa frontal"] = DashboardsF1Data.WingDamage,
+                ["asa dianteira"] = DashboardsF1Data.WingDamage,
                 ["asa traseira"] = DashboardsF1Data.WingDamage,
                 ["asa esquerda"] = DashboardsF1Data.WingDamage,
                 ["asa direita"] = DashboardsF1Data.WingDamage,
@@ -67,6 +69,11 @@ namespace F1VoiceDashboardWorker.Models
                 ["configuração carro"] = DashboardsF1Data.CarSetup,
                 ["configuração"] = DashboardsF1Data.CarSetup,
                 ["ajustes do carro"] = DashboardsF1Data.CarSetup,
+                ["ajuste do carro"] = DashboardsF1Data.CarSetup,
+                ["ajustes no carro"] = DashboardsF1Data.CarSetup,
+                ["ajuste no carro"] = DashboardsF1Data.CarSetup,
+                ["ajustes carro"] = DashboardsF1Data.CarSetup,
+                ["ajuste carro"] = DashboardsF1Data.CarSetup,
 
                 ["bateria"] = DashboardsF1Data.Battery,
                 ["ers"] = DashboardsF1Data.Battery,
@@ -74,9 +81,11 @@ namespace F1VoiceDashboardWorker.Models
                 ["média de uso de bateria"] = DashboardsF1Data.Battery,
 
                 ["modo de ultrapassagem"] = DashboardsF1Data.DRS,
+                ["modo ultrapassagem"] = DashboardsF1Data.DRS,
                 ["ativar drs"] = DashboardsF1Data.DRS,
                 ["ativar drs"] = DashboardsF1Data.DRS,
                 ["abrir asa"] = DashboardsF1Data.DRS,
+                ["abrir a asa"] = DashboardsF1Data.DRS,
 
                 ["Tempo de parada"] = DashboardsF1Data.PitStopTime,
                 ["Pit Stop"] = DashboardsF1Data.PitStopTime,
@@ -91,6 +100,11 @@ namespace F1VoiceDashboardWorker.Models
                 ["dano na caixa de cambio"] = DashboardsF1Data.CarDamage,
                 ["status dano no carro"] = DashboardsF1Data.CarDamage,
                 ["informações dano no carro"] = DashboardsF1Data.CarDamage,
+
+                ["freios"] = DashboardsF1Data.BrakesAndTyres,
+                ["super aquecimento"] = DashboardsF1Data.BrakesAndTyres,
+                ["desgaste freios"] = DashboardsF1Data.BrakesAndTyres,
+                ["queimado"] = DashboardsF1Data.BrakesAndTyres,
 
                 ["fechar"] = closeBrowser,
                 ["fecha"] = closeBrowser,
@@ -185,6 +199,11 @@ namespace F1VoiceDashboardWorker.Models
                 ["gearbox damage"] = DashboardsF1Data.CarDamage,
                 ["gearbox"] = DashboardsF1Data.CarDamage,
 
+                ["brakes"] = DashboardsF1Data.BrakesAndTyres,
+                ["overheating"] = DashboardsF1Data.BrakesAndTyres,
+                ["brake wear"] = DashboardsF1Data.BrakesAndTyres,
+                ["burnt"] = DashboardsF1Data.BrakesAndTyres,
+
                 ["close"] = closeBrowser,
                 ["exit"] = closeBrowser,
                 ["quit"] = closeBrowser,
@@ -204,7 +223,7 @@ namespace F1VoiceDashboardWorker.Models
 
                 ["stop telemetry"] = stopTelemetry,
                 ["stop collection"] = stopTelemetry,
-                ["end telemetry"] = stopTelemetry,
+                ["end telemetry"] = stopTelemetry, 
                 #endregion
             };
         }

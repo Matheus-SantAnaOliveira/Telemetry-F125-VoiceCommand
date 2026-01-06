@@ -4,6 +4,7 @@ namespace Api_Telemetry_F1.Models.SessionData
 {
     public class PacketSession
     {
+        public DateTime EventDate { get; set; } 
         public byte Weather { get; set; }
         public string WeatherDescription { get; set; }
         public sbyte TrackTemperature { get; set; }

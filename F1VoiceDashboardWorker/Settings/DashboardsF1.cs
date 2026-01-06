@@ -20,5 +20,6 @@ namespace F1VoiceDashboardWorker.Settings
         public string DRS { get; set; } = string.Empty;
         public string PitStopTime { get; set; } = string.Empty;
         public string CarDamage { get; set; } = string.Empty;
+        public string BrakesAndTyres { get; set; } = string.Empty;
     }
 }
